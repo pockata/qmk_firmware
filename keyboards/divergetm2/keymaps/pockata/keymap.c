@@ -60,51 +60,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
-// Initialize variable holding the binary representation of active modifiers.
-uint8_t mod_state;
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    // Store the current modifier state in the variable for later reference
-    mod_state = get_mods();
+// `shift + backspace = del` combo
+//
+// https://docs.qmk.fm/#/feature_key_overrides?id=simple-example
+const key_override_t delete_key_override = ko_make_basic(
+    MOD_MASK_SHIFT,
+    KC_BSPACE,
+    KC_DELETE
+);
 
-    switch (keycode) {
-        // https://beta.docs.qmk.fm/using-qmk/simple-keycodes/feature_advanced_keycodes#shift-backspace-for-delete-id-shift-backspace-for-delete
-        case KC_BSPC: {
-            // Initialize a boolean variable that keeps track
-            // of the delete key status: registered or not?
-            static bool delkey_registered;
-            if (record->event.pressed) {
-                // Detect the activation of either shift keys
-                if (mod_state & MOD_MASK_SHIFT) {
-                    // First temporarily canceling both shifts so that
-                    // shift isn't applied to the KC_DEL keycode
-                    del_mods(MOD_MASK_SHIFT);
-                    register_code(KC_DEL);
-                    // Update the boolean variable to reflect the status of KC_DEL
-                    delkey_registered = true;
-                    // Reapplying modifier state so that the held shift key(s)
-                    // still work even after having tapped the Backspace/Delete key.
-                    set_mods(mod_state);
-                    return false;
-                }
-            }
-            // on release of KC_BSPC
-            else {
-                // In case KC_DEL is still being sent even after the release of KC_BSPC
-                if (delkey_registered) {
-                    unregister_code(KC_DEL);
-                    delkey_registered = false;
-                    return false;
-                }
-            }
-
-            // Let QMK process the KC_BSPC keycode as usual outside of shift
-            return true;
-        }
-    }
-
-    return true;
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &delete_key_override,
+    NULL // Null terminate the array of overrides!
 };
 
+// See also default debounce algorithms
+// https://docs.qmk.fm/#/feature_debounce_type
+//
+// https://docs.qmk.fm/#/tap_hold
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_ESC:
@@ -113,3 +87,4 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
     }
 }
+
