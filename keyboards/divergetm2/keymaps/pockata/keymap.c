@@ -75,16 +75,16 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     NULL // Null terminate the array of overrides!
 };
 
-// See also default debounce algorithms
-// https://docs.qmk.fm/#/feature_debounce_type
-//
-// https://docs.qmk.fm/#/tap_hold
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_ESC:
-            return TAPPING_TERM + 150;
-        default:
-            return TAPPING_TERM;
-    }
-}
+/* // See also default debounce algorithms */
+/* // https://docs.qmk.fm/#/feature_debounce_type */
+/* // */
+/* //https://docs.qmk.fm/#/tap_hold */
+/* uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) { */
+/*     switch (keycode) { */
+/*         case KC_ESC: */
+/*             return TAPPING_TERM + 150; */
+/*         default: */
+/*             return TAPPING_TERM; */
+/*     } */
+/* } */
 

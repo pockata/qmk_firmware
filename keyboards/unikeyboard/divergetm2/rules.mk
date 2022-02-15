@@ -21,4 +21,6 @@ SPLIT_KEYBOARD = yes
 
 # For `shift + backspace = del` combo
 KEY_OVERRIDE_ENABLE = yes
+DEBOUNCE_TYPE = sym_defer_pk
+DEBOUNCE = 50
 
