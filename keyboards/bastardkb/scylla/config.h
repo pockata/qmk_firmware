@@ -23,83 +23,32 @@
 #define MANUFACTURER Bastard Keyboards
 #define PRODUCT Scylla
 
-#define MATRIX_ROWS 10
+#define MATRIX_ROWS 12
 #define MATRIX_COLS 6
-#define DIODE_DIRECTION ROW2COL
-#define MATRIX_ROW_PINS { D7, B5, F7, F6, B6 }
-#define MATRIX_COL_PINS { B4, E6, C6, B1, B3, B2 }
+#define DIODE_DIRECTION COL2ROW
 
-#define RGB_DI_PIN D2
-#define RGBLED_NUM 58
-#define RGBLED_SPLIT { 29, 29 }
-#define RGBLIGHT_LIMIT_VAL 120
-#define RGBLIGHT_ANIMATIONS
+#define MATRIX_ROW_PINS { D4, C6, D7, E6, B4, B5 }
+#define MATRIX_COL_PINS { B6, B2, B3, B1, F7, F6 }
+#define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
+
+#define MASTER_LEFT
 #define DEBOUNCE 5
-#define SOFT_SERIAL_PIN D0
-#define MASTER_RIGHT
+#define USE_SERIAL
 
-#ifdef RGBLIGHT_ENABLE
-#   define RGBLED_NUM 58
-#   define RGBLED_SPLIT { 29, 29 }
-#   define RGBLIGHT_LIMIT_VAL 50
-#   define RGBLIGHT_ANIMATIONS
-#endif
+#define RGB_DI_PIN D1
+#define RGBLED_NUM 26
+#define RGBLED_SPLIT { 13, 13 }
 
-// RGB matrix support
-#ifdef RGB_MATRIX_ENABLE
-#    define SPLIT_TRANSPORT_MIRROR
-#    define DRIVER_LED_TOTAL 58 // Number of LEDs
-#    define RGB_MATRIX_SPLIT { 29, 29 }
-#    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 50
-#    define RGB_MATRIX_STARTUP_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#    define RGB_DISABLE_WHEN_USB_SUSPENDED
-#    define RGB_MATRIX_KEYPRESSES
-// RGB Matrix Animation modes. Explicitly enabled
-// For full list of effects, see:
-// https://docs.qmk.fm/#/feature_rgb_matrix?id=rgb-matrix-effects
-#    define ENABLE_RGB_MATRIX_ALPHAS_MODS
-#    define ENABLE_RGB_MATRIX_GRADIENT_UP_DOWN
-#    define ENABLE_RGB_MATRIX_GRADIENT_LEFT_RIGHT
-#    define ENABLE_RGB_MATRIX_BREATHING
-#    define ENABLE_RGB_MATRIX_BAND_SAT
-#    define ENABLE_RGB_MATRIX_BAND_VAL
-#    define ENABLE_RGB_MATRIX_BAND_PINWHEEL_SAT
-#    define ENABLE_RGB_MATRIX_BAND_PINWHEEL_VAL
-#    define ENABLE_RGB_MATRIX_BAND_SPIRAL_SAT
-#    define ENABLE_RGB_MATRIX_BAND_SPIRAL_VAL
-#    define ENABLE_RGB_MATRIX_CYCLE_ALL
-#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
-#    define ENABLE_RGB_MATRIX_CYCLE_UP_DOWN
-#    define ENABLE_RGB_MATRIX_RAINBOW_MOVING_CHEVRON
-#    define ENABLE_RGB_MATRIX_CYCLE_OUT_IN
-#    define ENABLE_RGB_MATRIX_CYCLE_OUT_IN_DUAL
-#    define ENABLE_RGB_MATRIX_CYCLE_PINWHEEL
-#    define ENABLE_RGB_MATRIX_CYCLE_SPIRAL
-#    define ENABLE_RGB_MATRIX_DUAL_BEACON
-#    define ENABLE_RGB_MATRIX_RAINBOW_BEACON
-#    define ENABLE_RGB_MATRIX_RAINBOW_PINWHEELS
-#    define ENABLE_RGB_MATRIX_RAINDROPS
-#    define ENABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
-#    define ENABLE_RGB_MATRIX_HUE_BREATHING
-#    define ENABLE_RGB_MATRIX_HUE_PENDULUM
-#    define ENABLE_RGB_MATRIX_HUE_WAVE
-#    define ENABLE_RGB_MATRIX_PIXEL_RAIN
-#    define ENABLE_RGB_MATRIX_PIXEL_FLOW
-#    define ENABLE_RGB_MATRIX_PIXEL_FRACTAL
-// enabled only if RGB_MATRIX_FRAMEBUFFER_EFFECTS is defined
-#    define ENABLE_RGB_MATRIX_TYPING_HEATMAP
-#    define ENABLE_RGB_MATRIX_DIGITAL_RAIN
-// enabled only of RGB_MATRIX_KEYPRESSES or RGB_MATRIX_KEYRELEASES is defined
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_SIMPLE
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_WIDE
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTIWIDE
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_CROSS
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTICROSS
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_NEXUS
-#    define ENABLE_RGB_MATRIX_SOLID_REACTIVE_MULTINEXUS
-#    define ENABLE_RGB_MATRIX_SPLASH
-#    define ENABLE_RGB_MATRIX_MULTISPLASH
-#    define ENABLE_RGB_MATRIX_SOLID_SPLASH
-#    define ENABLE_RGB_MATRIX_SOLID_MULTISPLASH
-#endif
+// switch off the RGB lights when the host goes to sleep
+#define RGBLIGHT_SLEEP
+#define RGBLIGHT_ANIMATIONS
+// https://github.com/qmk/qmk_firmware/blob/master/docs/feature_rgblight.md#configuration
+//
+// TODO: Create custom keycode to print current RGB info to console
+// https://docs.qmk.fm/#/custom_quantum_functions?id=defining-a-new-keycode
+#define RGBLIGHT_HUE_STEP 3 // default: 10
+#define RGBLIGHT_SAT_STEP 5 // default: 17
+#define RGBLIGHT_DEFAULT_VAL 221 // default: 255
+#define RGBLIGHT_DEFAULT_MODE RGBLIGHT_MODE_STATIC_LIGHT
+#define RGBLIGHT_DEFAULT_HUE 24
+
